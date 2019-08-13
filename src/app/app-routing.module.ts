@@ -4,7 +4,6 @@ import {BooksHomeComponent} from './component/books-home/books-home.component';
 import {BooksDetailComponent} from './component/books-detail/books-detail.component';
 import {BooksUpdateComponent} from './component/books-update/books-update.component';
 import {BooksDeleteComponent} from './component/books-delete/books-delete.component';
-import {BooksAddComponent} from './component/books-add/books-add.component';
 import {BooksCreateComponent} from './component/books-create/books-create.component';
 
 
