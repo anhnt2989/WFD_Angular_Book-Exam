@@ -9,7 +9,7 @@ import { BooksDetailComponent } from './component/books-detail/books-detail.comp
 import { BooksUpdateComponent } from './component/books-update/books-update.component';
 import { BooksDeleteComponent } from './component/books-delete/books-delete.component';
 import {MDBBootstrapModule, MdbTableService} from 'angular-bootstrap-md';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
@@ -26,7 +26,8 @@ import {HttpClientModule} from '@angular/common/http';
     AppRoutingModule,
     MDBBootstrapModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

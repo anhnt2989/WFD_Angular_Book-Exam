@@ -15,14 +15,14 @@ export class BooksDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    const id = + this.route.snapshot.paramMap.get('id');
-    this.bookService.getBookById(id).subscribe(
-      next => (this.book = next),
-      error => {
-        console.log(error);
-        this.book = null;
-      }
-    );
+    // const id = + this.route.snapshot.paramMap.get('id');
+    // this.bookService.getBookById(id).subscribe(
+    //   // next => (this.book = next),
+    //   error => {
+    //     console.log(error);
+    //     this.book = null;
+    //   }
+    // );
   }
 
 }

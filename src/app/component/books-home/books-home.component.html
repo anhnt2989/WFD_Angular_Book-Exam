@@ -10,11 +10,11 @@
   <tbody>
   <tr mdbTableCol *ngFor="let book of books">
     <td>{{book.id}}</td>
-    <td><a [routerLink]="['/books','/:', book.id]">{{book.title}}</a></td>
+    <td><a >{{book.title}}</a></td>
     <td>{{book.author}}</td>
     <td>
-      <button class="btn btn-outline-warning" routerLink="books/:id/update">Edit</button>
-      <button class="btn btn-outline-danger" routerLink="books/:id/delete">Delete</button>
+      <button class="btn btn-outline-warning" routerLink="/books/:id/update">Edit</button>
+      <button class="btn btn-outline-danger" routerLink="/books/:id/delete">Delete</button>
     </td>
   </tr>
   </tbody>

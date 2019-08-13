@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Book} from '../../model/book';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {BookService} from '../../service/book.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-books-add',
@@ -9,30 +10,31 @@ import {BookService} from '../../service/book.service';
   styleUrls: ['./books-add.component.scss']
 })
 export class BooksAddComponent implements OnInit {
-  books: Book[];
+  book: Book;
   bookForm: FormGroup;
 
-  constructor(private bookService: BookService, private fb: FormBuilder) {
+  constructor(private bookService: BookService, private fb: FormBuilder, private router: Router,
+              private route: ActivatedRoute) {
+    this.book = {
+      id: +'',
+      title: '',
+      author: '',
+      description: ''
+    };
   }
 
   ngOnInit() {
     this.bookForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(10)]],
-      author: ['', [Validators.required, Validators.minLength(10)]],
+      title: ['', [Validators.required]],
+      author: ['', [Validators.required]],
+      description: ['', [Validators.required]]
     });
   }
-
-  onSubmit() {
+  doAdd() {
     if (this.bookForm.valid) {
-      const {value} = this.bookForm;
-      this.bookService.createBook(value)
-        .subscribe(next => {
-          this.books.unshift(next);
-          this.bookForm.reset({
-            name: '',
-            author: ''
-          });
-        }, error => console.log(error));
+      this.bookService.createBook(this.book).subscribe();
+      this.router.navigateByUrl('/books');
     }
   }
+
 }
