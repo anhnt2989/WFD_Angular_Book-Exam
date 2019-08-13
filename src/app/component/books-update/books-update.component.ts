@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Book} from '../../model/book';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {BookService} from '../../service/book.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-books-update',
@@ -11,44 +12,40 @@ import {BookService} from '../../service/book.service';
 })
 export class BooksUpdateComponent implements OnInit {
   book: Book;
-  bookForm: FormGroup;
-  constructor(private route: ActivatedRoute,
-              private bookService: BookService,
-              private fb: FormBuilder,
-              private router: Router) { }
+  sub: Subscription;
+  bookUpdateForm: FormGroup;
 
-  ngOnInit() {
-    this.bookForm = this.fb.group({
-      title: ['', [Validators.required, Validators.minLength(10)]],
-      author: ['', [Validators.required, Validators.minLength(10)]]
-    });
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.bookService.getBookById(id).subscribe(
-      next => {
-        this.book = next;
-        this.bookForm.patchValue(this.book);
-      },
-      error => {
-        console.log(error);
-        this.book = null;
-      }
-    );
+  constructor(private activeRoute: ActivatedRoute, private bookService: BookService,
+              private formBuilder: FormBuilder, private router: Router) {
   }
 
-  onSubmit() {
-    if (this.bookForm.valid) {
-      const { value } = this.bookForm;
+  ngOnInit() {
+    this.bookUpdateForm = this.formBuilder.group({
+      title: [''],
+      author: [''],
+      description: ['']
+    });
+    this.sub = this.activeRoute.paramMap.subscribe((paramMap: ParamMap) => {
+      const id = paramMap.get('id');
+      this.bookService.getBookById(Number(id))
+        .subscribe(next => {
+          this.book = next;
+          this.bookUpdateForm.patchValue(next);
+        });
+    });
+  }
+
+  updateBook() {
+    if (this.bookUpdateForm.valid) {
+      const {value} = this.bookUpdateForm;
       const data = {
         ...this.book,
         ...value
       };
-      this.bookService.updateBook(data).subscribe(
-        next => {
-          this.router.navigate(['/home']);
-        },
-        error => console.log(error)
-      );
+      this.bookService.updateBook(data)
+        .subscribe(next => {
+          this.router.navigateByUrl('/books');
+        });
     }
   }
-
 }

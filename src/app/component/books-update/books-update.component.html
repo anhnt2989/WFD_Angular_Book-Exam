@@ -1,26 +1,22 @@
-<br>
-<div>
-  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <div class="alert alert-primary a" role="alert">
-        Title:
-      </div>
-      <input formControlName="title" [(ngModel)]="book.title" class="form-control">
-    </div>
-    <div class="form-group">
-      <div class="alert alert-primary a" role="alert">
-        Author
-      </div>
-      <input formControlName="author" [(ngModel)]="book.author" class="form-control">
-    </div>
-    <div class="form-group">
-      <div class="alert alert-primary a" role="alert">
-        Description
-      </div>
-      <textarea formControlName="description" [(ngModel)]="book.description" class="form-control"></textarea>
+<div class="mt-3">
+  <h3 class="text-primary">Book Edit</h3><hr>
+  <form [formGroup]="bookUpdateForm" (ngSubmit)="updateBook()">
+    <div>
+      <label>Title:
+        <input class="form-control" type="text" formControlName="title">
+      </label>
     </div>
     <div>
-      <button type="submit" class="btn btn-primary">Edit</button>
+      <label>Author:
+        <input class="form-control" type="text" formControlName="author">
+      </label>
     </div>
+    <div>
+      <label>Description:
+        <textarea class="form-control" formControlName="description" cols="100" rows="10"></textarea>
+      </label>
+    </div>
+    <button class="btn btn-outline-primary mr-3" type="submit">Update</button>
+    <button class="btn btn-outline-warning" type="submit" routerLink="/books">Cancel</button>
   </form>
 </div>
