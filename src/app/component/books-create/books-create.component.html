@@ -1,4 +1,8 @@
 <form class="form-group" [formGroup]="bookCreateForm" (ngSubmit)="createBook()">
+  <input type="hidden" class="form-control"
+         formControlName="id" [(ngModel)]="book.id"
+         name="id" id="id"
+         aria-label="id">
   <div class="md-form form-sm">
     <input placeholder="Title" mdbInput type="text" id="title" class="form-control form-control-sm"
            formControlName="title"
