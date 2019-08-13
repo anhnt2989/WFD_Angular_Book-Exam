@@ -1,0 +1,19 @@
+<table mdbTable>
+  <thead class="black white-text">
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Tên sách</th>
+    <th scope="col">Tác giả</th>
+    <th scope="col">Tác vụ</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr mdbTableCol *ngFor="let book of books">
+    <th scope="row">{{book.id}}</th>
+    <td>{{book.id}}</td>
+    <td>{{book.name}}</td>
+    <td>{{book.author}}</td>
+  </tr>
+  </tbody>
+</table>
+
