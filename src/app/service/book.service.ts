@@ -9,7 +9,7 @@ import {map} from 'rxjs/operators';
 })
 export class BookService {
   bookList: Book[] = [];
-  private readonly API_URL = '';
+  private readonly API_URL = 'http://localhost:3000/books';
 
   constructor(private http: HttpClient) {
   }

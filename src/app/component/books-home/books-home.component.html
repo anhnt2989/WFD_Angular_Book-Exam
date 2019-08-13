@@ -1,4 +1,3 @@
-
 <table mdbTable>
   <thead class="black white-text">
   <tr>
@@ -10,9 +9,8 @@
   </thead>
   <tbody>
   <tr mdbTableCol *ngFor="let book of books">
-    <th scope="row">{{book.id}}</th>
     <td>{{book.id}}</td>
-    <td>{{book.name}}</td>
+    <td>{{book.title}}</td>
     <td>{{book.author}}</td>
     <td><button class="btn btn-outline-warning" routerLink="books/:id/update">Edit</button>
       <button class="btn btn-outline-danger" routerLink="books/:id/delete">Delete</button>
