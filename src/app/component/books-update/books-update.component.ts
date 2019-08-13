@@ -19,7 +19,7 @@ export class BooksUpdateComponent implements OnInit {
 
   ngOnInit() {
     this.bookForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(10)]],
+      title: ['', [Validators.required, Validators.minLength(10)]],
       author: ['', [Validators.required, Validators.minLength(10)]]
     });
     const id = +this.route.snapshot.paramMap.get('id');

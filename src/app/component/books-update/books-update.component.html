@@ -1,1 +1,26 @@
-<p>books-update works!</p>
+<br>
+<div>
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <div class="alert alert-primary a" role="alert">
+        Title:
+      </div>
+      <input formControlName="title" [(ngModel)]="book.title" class="form-control">
+    </div>
+    <div class="form-group">
+      <div class="alert alert-primary a" role="alert">
+        Author
+      </div>
+      <input formControlName="author" [(ngModel)]="book.author" class="form-control">
+    </div>
+    <div class="form-group">
+      <div class="alert alert-primary a" role="alert">
+        Description
+      </div>
+      <textarea formControlName="description" [(ngModel)]="book.description" class="form-control"></textarea>
+    </div>
+    <div>
+      <button type="submit" class="btn btn-primary">Edit</button>
+    </div>
+  </form>
+</div>
