@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Book} from '../../model/book';
 import {BookService} from '../../service/book.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-books-delete',
@@ -10,19 +11,26 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class BooksDeleteComponent implements OnInit {
   book: Book;
+  sub: Subscription;
 
-  constructor(private bookService: BookService, private route: ActivatedRoute) {
+  constructor(private bookService: BookService, private router: Router, private activeRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
-    const id = + this.route.snapshot.paramMap.get('id');
-    this.bookService.deleteBook(id).subscribe(
-      next => (this.book = next),
-      error => {
-        console.log(error);
-        this.book = null;
-      }
-    );
+    this.sub = this.activeRoute.paramMap.subscribe((paramMap: ParamMap) => {
+      const id = paramMap.get('id');
+      this.bookService.getBookById(Number(id))
+        .subscribe(next => {
+          this.book = next;
+        });
+    });
+  }
+
+  deleteBook() {
+    this.bookService.deleteBook(this.book.id).subscribe(
+      () => {
+        this.router.navigateByUrl('/books');
+      });
   }
 
 }

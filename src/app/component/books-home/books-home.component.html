@@ -4,7 +4,7 @@
     <th scope="col">#</th>
     <th scope="col">Tên sách</th>
     <th scope="col">Tác giả</th>
-    <th scope="col">Tác vụ</th>
+    <th scope="col" id="acts">Tác vụ</th>
   </tr>
   </thead>
   <tbody>
@@ -12,9 +12,9 @@
     <td>{{book.id}}</td>
     <td><a >{{book.title}}</a></td>
     <td>{{book.author}}</td>
-    <td>
-      <button class="btn btn-outline-warning" routerLink="/books/:id/update">Edit</button>
-      <button class="btn btn-outline-danger" routerLink="/books/:id/delete">Delete</button>
+    <td id="actBut">
+      <a class="btn btn-outline-warning" routerLink="/books/{{book.id}}/update">Edit</a>
+      <a class="btn btn-outline-danger" routerLink="/books/{{book.id}}/delete">Delete</a>
     </td>
   </tr>
   </tbody>

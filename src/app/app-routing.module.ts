@@ -5,6 +5,7 @@ import {BooksDetailComponent} from './component/books-detail/books-detail.compon
 import {BooksUpdateComponent} from './component/books-update/books-update.component';
 import {BooksDeleteComponent} from './component/books-delete/books-delete.component';
 import {BooksAddComponent} from './component/books-add/books-add.component';
+import {BooksCreateComponent} from './component/books-create/books-create.component';
 
 
 const routes: Routes = [
@@ -25,8 +26,11 @@ const routes: Routes = [
     component: BooksDeleteComponent
   },
   {
-    path: 'books/add',
-    component: BooksAddComponent
+    path: 'books/create',
+    component: BooksCreateComponent
+  },
+  {
+    path: '**', redirectTo: '/books', pathMatch: 'full'
   }
 ];
 

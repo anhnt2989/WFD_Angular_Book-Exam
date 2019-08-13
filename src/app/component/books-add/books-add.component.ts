@@ -11,7 +11,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class BooksAddComponent implements OnInit {
   book: Book;
-  bookForm: FormGroup;
+  bookCreateForm: FormGroup;
 
   constructor(private bookService: BookService, private fb: FormBuilder, private router: Router,
               private route: ActivatedRoute) {
@@ -24,16 +24,25 @@ export class BooksAddComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.bookForm = this.fb.group({
-      title: ['', [Validators.required]],
-      author: ['', [Validators.required]],
-      description: ['', [Validators.required]]
+    this.bookCreateForm = this.fb.group({
+      title: ['', [Validators.required, Validators.minLength(10)]],
+      author: ['', [Validators.required, Validators.minLength(10)]],
+      description: ['', ]
     });
   }
-  doAdd() {
-    if (this.bookForm.valid) {
-      this.bookService.createBook(this.book).subscribe();
-      this.router.navigateByUrl('/books');
+  onSubmit() {
+    if (this.bookCreateForm.valid) {
+      const {value} = this.bookCreateForm;
+      this.bookService.createBook(value)
+        .subscribe(next => {
+          this.bookService.bookList.push(next);
+          this.bookCreateForm.reset({
+            title: '',
+            author: '',
+            description: ''
+          });
+          this.router.navigateByUrl('/books');
+        });
     }
   }
 

@@ -1,0 +1,30 @@
+<div class="mt-3">
+  <h3 class="text-primary">Create New Book</h3>
+  <div class="p-3 border d-inline-block">
+    <form class="form-group" [formGroup]="bookCreateForm" (ngSubmit)="createBook()">
+      <div>
+        <label> Title:
+        </label>
+        <input class="form-control" type="text" formControlName="title"
+               [class.is-invalid]="bookCreateForm.controls.title.invalid &&(bookCreateForm.controls.title.touched ||bookCreateForm.controls.title.dirty)">
+      </div>
+      <div>
+        <label> Author:
+        </label>
+        <input class="form-control" type="text" formControlName="author"
+               [class.is-invalid]="bookCreateForm.controls.author.invalid &&(bookCreateForm.controls.author.touched||bookCreateForm.controls.author.dirty)">
+      </div>
+      <div>
+        <label> Description:</label>
+        <div>
+          <textarea class="form-control" type="text" formControlName="description" cols="100" rows="3"></textarea>
+        </div>
+      </div>
+      <button class="btn btn-primary m-3" type="submit">Create</button>
+      <a routerLink="/books">
+        <button class="btn btn-warning">Cancel</button>
+      </a>
+
+    </form>
+  </div>
+</div>
