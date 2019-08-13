@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {BookService} from '../../service/book.service';
 import {Router} from '@angular/router';
+import {Book} from '../../model/book';
 
 @Component({
   selector: 'app-books-create',
@@ -9,6 +10,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./books-create.component.scss']
 })
 export class BooksCreateComponent implements OnInit {
+  book: Book;
   bookCreateForm: FormGroup;
   constructor(private bookService: BookService, private formBuilder: FormBuilder, private router: Router) { }
 

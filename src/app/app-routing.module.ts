@@ -13,6 +13,10 @@ const routes: Routes = [
     component: BooksHomeComponent
   },
   {
+    path: 'books/create',
+    component: BooksCreateComponent
+  },
+  {
     path: 'books/:id',
     component: BooksDetailComponent
   },
@@ -23,10 +27,6 @@ const routes: Routes = [
   {
     path: 'books/:id/delete',
     component: BooksDeleteComponent
-  },
-  {
-    path: 'books/create',
-    component: BooksCreateComponent
   },
   {
     path: '**', redirectTo: '/books', pathMatch: 'full'
